@@ -1,4 +1,4 @@
-# vencord-multiacc-plugin
+# Vencord Multi-Account Plugin
 
 A Vencord plugin that allows using multiple Discord accounts in one instance by merging DMs and servers in the UI.
 
@@ -8,19 +8,23 @@ A Vencord plugin that allows using multiple Discord accounts in one instance by 
 
 ## Features
 
--   **Multi-Account Support**: Use multiple Discord accounts simultaneously
--   **Merged DMs**: View and manage DMs from all accounts in one interface
--   **Merged Servers**: Access servers from all accounts without switching
--   **Account Switcher**: Easy switching between active accounts
--   **Account Management**: Add, remove, and manage multiple accounts
--   **Configurable**: Toggle features on/off as needed
+- **Multi-Account Support**: Use multiple Discord accounts simultaneously
+- **Merged DMs**: View and manage DMs from all accounts in one interface
+- **Merged Servers**: Access servers from all accounts without switching
+- **Account Switcher**: Easy switching between active accounts
+- **Account Management**: Add, remove, and manage multiple accounts
+- **Configurable**: Toggle features on/off as needed
+- **Fake Items**: Show fake DM and server items in UI for demonstration
+- **Token Management**: Securely store and manage multiple Discord tokens
 
 ## Settings
 
--   **Enable Multi-Account Mode**: Master toggle for the plugin
--   **Show Account Switcher**: Display account switcher in user panel
--   **Merge DMs**: Combine DMs from all accounts
--   **Merge Servers**: Combine servers from all accounts
+- **Enable Multi-Account Mode**: Master toggle for the plugin
+- **Show Account Switcher**: Display account switcher in user panel
+- **Merge DMs**: Combine DMs from all accounts
+- **Merge Servers**: Combine servers from all accounts
+- **Show Fake Items**: Show fake DM and server items in UI for demonstration
+- **Fake Items Count**: Number of fake items to show per account (1-5)
 
 ## How It Works
 
@@ -32,10 +36,11 @@ A Vencord plugin that allows using multiple Discord accounts in one instance by 
 
 ## Installation
 
-1. Copy the `vencord-multiacc-plugin` folder to your Vencord userplugins directory
-2. Restart Vencord or reload the client
-3. Enable the plugin in Vencord settings
-4. Configure your accounts in the plugin settings
+1. Copy the `blu-multiacc` folder to your Vencord `src/userplugins` directory
+2. Rebuild Vencord: `npm run build`
+3. Restart Discord
+4. Enable the plugin in Vencord settings
+5. Configure your accounts in the plugin settings
 
 ## Account Setup
 
@@ -62,23 +67,25 @@ To get tokens (for educational purposes only):
 
 ### Architecture
 
--   **Account Management**: Stores account data locally
--   **UI Merging**: Patches Discord's store functions to return merged data
--   **Token Handling**: Securely stores and manages multiple tokens
--   **State Management**: Tracks active accounts and their data
+- **Account Management**: Stores account data locally
+- **UI Merging**: Patches Discord's store functions to return merged data
+- **Token Handling**: Securely stores and manages multiple tokens
+- **State Management**: Tracks active accounts and their data
+- **Fake Items**: Creates demonstration items for UI testing
 
 ### Limitations
 
--   **Token Security**: Tokens are stored locally (consider security implications)
--   **API Rate Limits**: Multiple accounts may hit rate limits faster
--   **Discord TOS**: May violate Discord's Terms of Service
--   **Experimental**: Plugin is in early development stage
+- **Token Security**: Tokens are stored locally (consider security implications)
+- **API Rate Limits**: Multiple accounts may hit rate limits faster
+- **Discord TOS**: May violate Discord's Terms of Service
+- **Experimental**: Plugin is in early development stage
+- **Fake Data**: Uses demonstration data rather than real account data
 
 ## Security Considerations
 
--   **Token Storage**: Tokens are stored in plain text locally
--   **Account Safety**: Using multiple accounts may trigger Discord's security systems
--   **Data Privacy**: All account data is processed locally
+- **Token Storage**: Tokens are stored in plain text locally
+- **Account Safety**: Using multiple accounts may trigger Discord's security systems
+- **Data Privacy**: All account data is processed locally
 
 ## Troubleshooting
 
@@ -91,9 +98,9 @@ To get tokens (for educational purposes only):
 
 ### Getting Help
 
--   Check the GitHub issues page
--   Ensure you're using the latest version
--   Verify Vencord compatibility
+- Check the GitHub issues page
+- Ensure you're using the latest version
+- Verify Vencord compatibility
 
 ## Development
 
@@ -110,6 +117,6 @@ This plugin is experimental and under active development. Features may change or
 
 This plugin is for educational purposes only. Users are responsible for compliance with Discord's Terms of Service. The developers are not responsible for any account actions taken by Discord.
 
-## Disclaimer
+## AI Disclaimer
 
-This plugin was developed with the assistance of AI (Claude Sonnet 4). While the code has been reviewed and tested, please use it at your own discretion. If you encounter any issues, please report them through the GitHub issues page.
+This plugin was developed with the assistance of AI (Claude Sonnet 4). The AI helped with code structure, implementation details, and debugging. While the code has been reviewed and tested, please use it at your own discretion. If you encounter any issues, please report them through the GitHub issues page.
