@@ -1,7 +1,7 @@
 {
-  "name": "vencord-multiacc-plugin",
+  "name": "multiAccount",
   "version": "1.0.0",
-  "description": "A Vencord plugin that allows using multiple Discord accounts in one instance by merging DMs and servers",
+  "description": "Multi Account",
   "main": "index.tsx",
   "scripts": {
     "build": "echo 'No build step required for Vencord user plugins'",

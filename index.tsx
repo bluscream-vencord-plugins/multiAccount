@@ -7,10 +7,10 @@
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { 
-    React, 
-    UserStore, 
-    GuildStore, 
+import {
+    React,
+    UserStore,
+    GuildStore,
     ChannelStore,
     SelectedGuildStore,
     SelectedChannelStore,
@@ -113,7 +113,7 @@ function AccountManagementModal({ modalProps }: { modalProps: ModalProps }) {
     };
 
     const toggleAccount = (accountId: string) => {
-        setAccounts(accounts.map(acc => 
+        setAccounts(accounts.map(acc =>
             acc.id === accountId ? { ...acc, isActive: !acc.isActive } : acc
         ));
     };
@@ -136,9 +136,9 @@ function AccountManagementModal({ modalProps }: { modalProps: ModalProps }) {
                         Add Account
                     </Button>
                 </div>
-                
+
                 <div style={{ borderTop: '1px solid var(--background-modifier-accent)', margin: '20px 0' }} />
-                
+
                 <div>
                     <Text variant="heading-md/semibold" style={{ marginBottom: '10px' }}>Active Accounts</Text>
                     {accounts.map(account => (
@@ -198,11 +198,17 @@ function AccountSwitcher() {
     );
 }
 
+import { Logger } from "@utils/Logger";
+
+const pluginId = "multiAccount";
+const pluginName = "Multi Account";
+const logger = new Logger(pluginName, "#7289da");
+
 // Main plugin component
 export default definePlugin({
-    name: "MultiAccountPlugin",
+    name: pluginName,
     description: "Allows using multiple Discord accounts in one instance by merging DMs and servers",
-    authors: [Devs.D3SOX],
+    authors: [Devs.D3SOX, { name: "Bluscream", id: 467777925790564352n }],
 
     settings,
 
@@ -247,7 +253,7 @@ export default definePlugin({
     // Patch guild list to include fake guilds from other accounts
     patchGuildList(originalGuilds: any[]) {
         if (!isMultiAccountMode || !settings.store.mergeServers || !settings.store.showFakeItems) return originalGuilds;
-        
+
         const fakeGuilds: any[] = [];
         multiAccountData.forEach(account => {
             if (account.isActive) {
@@ -260,7 +266,7 @@ export default definePlugin({
                     accountId: account.id,
                     type: 'fake-account-header'
                 });
-                
+
                 // Add fake servers for this account based on settings
                 const itemCount = settings.store.fakeItemsCount || 3;
                 for (let i = 0; i < itemCount; i++) {
@@ -275,14 +281,14 @@ export default definePlugin({
                 }
             }
         });
-        
+
         return [...originalGuilds, ...fakeGuilds];
     },
 
     // Patch DM list to include fake DMs from other accounts
     patchDMList(originalDMs: any[]) {
         if (!isMultiAccountMode || !settings.store.mergeDMs || !settings.store.showFakeItems) return originalDMs;
-        
+
         const fakeDMs: any[] = [];
         multiAccountData.forEach(account => {
             if (account.isActive) {
@@ -300,7 +306,7 @@ export default definePlugin({
                         avatar: account.avatar
                     }]
                 });
-                
+
                 // Add fake DM channels for this account based on settings
                 const itemCount = settings.store.fakeItemsCount || 3;
                 for (let i = 0; i < itemCount; i++) {
@@ -320,7 +326,7 @@ export default definePlugin({
                 }
             }
         });
-        
+
         return [...originalDMs, ...fakeDMs];
     },
 
@@ -376,7 +382,7 @@ export default definePlugin({
             setIsEnabled(newValue);
             settings.store.enableMultiAccount = newValue;
             isMultiAccountMode = newValue;
-            
+
             if (newValue) {
                 showToast("Multi-account mode enabled", Toasts.Type.SUCCESS);
             } else {
@@ -387,7 +393,7 @@ export default definePlugin({
         return (
             <div>
                 <Text variant="heading-md/semibold" style={{ marginBottom: '20px' }}>Multi-Account Settings</Text>
-                
+
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                     <Switch
                         value={isEnabled}
