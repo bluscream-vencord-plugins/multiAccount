@@ -1,8 +1,9 @@
-/*
- * Vencord, a Discord client mod
- * Copyright (c) 2024 Vendicated and contributors
- * SPDX-License-Identifier: GPL-3.0-or-later
- */
+export const pluginInfo = {
+    id: "multiAccount",
+    name: "Multi Account",
+    description: "Allows using multiple Discord accounts in one instance by merging DMs and servers",
+    color: "#7289da"
+};
 
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
@@ -200,13 +201,11 @@ function AccountSwitcher() {
 
 import { Logger } from "@utils/Logger";
 
-const pluginId = "multiAccount";
-const pluginName = "Multi Account";
-const logger = new Logger(pluginName, "#7289da");
+const logger = new Logger(pluginInfo.name, pluginInfo.color);
 
 // Main plugin component
 export default definePlugin({
-    name: pluginName,
+    name: "Multi Account",
     description: "Allows using multiple Discord accounts in one instance by merging DMs and servers",
     authors: [Devs.D3SOX, { name: "Bluscream", id: 467777925790564352n }],
 
