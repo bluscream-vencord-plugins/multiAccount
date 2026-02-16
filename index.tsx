@@ -1,20 +1,11 @@
-export const pluginInfo = {
-    id: "multiAccount",
-    name: "Multi Account",
-    description: "Allows using multiple Discord accounts in one instance by merging DMs and servers",
-    color: "#7289da"
-};
-
-import { definePluginSettings } from "@api/Settings";
+//// Plugin originally written for Equicord at 2026-02-16 by https://github.com/Bluscream, https://antigravity.google
+// region Imports
+import definePlugin from "@utils/types";
 import { Devs } from "@utils/constants";
-import definePlugin, { OptionType } from "@utils/types";
 import {
     React,
     UserStore,
     GuildStore,
-    ChannelStore,
-    SelectedGuildStore,
-    SelectedChannelStore,
     showToast,
     Toasts,
     Button,
@@ -24,10 +15,40 @@ import {
     useState,
     useEffect
 } from "@webpack/common";
-import { ModalRoot, ModalHeader, ModalContent, ModalFooter, ModalCloseButton, openModal, ModalProps, ModalSize } from "@utils/modal";
-// Form components will be imported from webpack/common
+import {
+    ModalRoot,
+    ModalHeader,
+    ModalContent,
+    ModalFooter,
+    ModalCloseButton,
+    openModal,
+    ModalProps,
+    ModalSize
+} from "@utils/modal";
+import { Logger } from "@utils/Logger";
 
-// Account management interface
+import { settings } from "./settings";
+// endregion Imports
+
+// region PluginInfo
+export const pluginInfo = {
+    id: "multiAccount",
+    name: "MultiAccount",
+    description: "Allows using multiple Discord accounts in one instance by merging DMs and servers",
+    color: "#7289da",
+    authors: [
+        Devs.D3SOX,
+        { name: "Bluscream", id: 467777925790564352n },
+        { name: "Assistant", id: 0n }
+    ],
+};
+// endregion PluginInfo
+
+// region Variables
+const logger = new Logger(pluginInfo.id, pluginInfo.color);
+let multiAccountData: AccountData[] = [];
+let isMultiAccountMode = false;
+
 interface AccountData {
     id: string;
     username: string;
@@ -36,48 +57,9 @@ interface AccountData {
     token: string;
     isActive: boolean;
 }
+// endregion Variables
 
-// Global state for multiple accounts
-let multiAccountData: AccountData[] = [];
-let isMultiAccountMode = false;
-
-// Settings
-const settings = definePluginSettings({
-    enableMultiAccount: {
-        type: OptionType.BOOLEAN,
-        description: "Enable multi-account mode",
-        default: false
-    },
-    showAccountSwitcher: {
-        type: OptionType.BOOLEAN,
-        description: "Show account switcher in user panel",
-        default: true
-    },
-    mergeDMs: {
-        type: OptionType.BOOLEAN,
-        description: "Merge DMs from all accounts",
-        default: true
-    },
-    mergeServers: {
-        type: OptionType.BOOLEAN,
-        description: "Merge servers from all accounts",
-        default: true
-    },
-    showFakeItems: {
-        type: OptionType.BOOLEAN,
-        description: "Show fake DM and server items in UI",
-        default: true
-    },
-    fakeItemsCount: {
-        type: OptionType.SLIDER,
-        description: "Number of fake items to show per account",
-        default: 3,
-        markers: [1, 2, 3, 4, 5],
-        stickToMarkers: true
-    }
-});
-
-// Account Management Modal
+// region Components
 function AccountManagementModal({ modalProps }: { modalProps: ModalProps }) {
     const [accounts, setAccounts] = useState<AccountData[]>(multiAccountData);
     const [newAccountToken, setNewAccountToken] = useState("");
@@ -89,8 +71,6 @@ function AccountManagementModal({ modalProps }: { modalProps: ModalProps }) {
         }
 
         try {
-            // This is a simplified example - in reality, you'd need to validate the token
-            // and fetch user data from Discord's API
             const newAccount: AccountData = {
                 id: Date.now().toString(),
                 username: "Loading...",
@@ -171,15 +151,13 @@ function AccountManagementModal({ modalProps }: { modalProps: ModalProps }) {
     );
 }
 
-// Account Switcher Component
 function AccountSwitcher() {
     const [currentAccount, setCurrentAccount] = useState<string>("");
 
     useEffect(() => {
-        // Get current account info
         const currentUser = UserStore.getCurrentUser();
         if (currentUser) {
-            setCurrentAccount(`${currentUser.username}#${currentUser.discriminator}`);
+            setCurrentAccount(`${currentUser.username}${currentUser.discriminator !== "0" ? `#${currentUser.discriminator}` : ""}`);
         }
     }, []);
 
@@ -198,17 +176,13 @@ function AccountSwitcher() {
         </div>
     );
 }
+// endregion Components
 
-import { Logger } from "@utils/Logger";
-
-const logger = new Logger(pluginInfo.name, pluginInfo.color);
-
-// Main plugin component
+// region Definition
 export default definePlugin({
-    name: "Multi Account",
-    description: "Allows using multiple Discord accounts in one instance by merging DMs and servers",
-    authors: [Devs.D3SOX, { name: "Bluscream", id: 467777925790564352n }],
-
+    name: pluginInfo.name,
+    description: pluginInfo.description,
+    authors: pluginInfo.authors,
     settings,
 
     patches: [
@@ -242,21 +216,17 @@ export default definePlugin({
         }
     ],
 
-    // Multi-account data getters
     getMultiAccountUser() {
         if (!isMultiAccountMode) return null;
-        // Return merged user data from all active accounts
         return multiAccountData.find(acc => acc.isActive) || null;
     },
 
-    // Patch guild list to include fake guilds from other accounts
     patchGuildList(originalGuilds: any[]) {
         if (!isMultiAccountMode || !settings.store.mergeServers || !settings.store.showFakeItems) return originalGuilds;
 
         const fakeGuilds: any[] = [];
         multiAccountData.forEach(account => {
             if (account.isActive) {
-                // Create fake guild items for this account
                 fakeGuilds.push({
                     id: `fake-guild-${account.id}`,
                     name: `${account.username}'s Servers`,
@@ -266,7 +236,6 @@ export default definePlugin({
                     type: 'fake-account-header'
                 });
 
-                // Add fake servers for this account based on settings
                 const itemCount = settings.store.fakeItemsCount || 3;
                 for (let i = 0; i < itemCount; i++) {
                     fakeGuilds.push({
@@ -284,18 +253,16 @@ export default definePlugin({
         return [...originalGuilds, ...fakeGuilds];
     },
 
-    // Patch DM list to include fake DMs from other accounts
     patchDMList(originalDMs: any[]) {
         if (!isMultiAccountMode || !settings.store.mergeDMs || !settings.store.showFakeItems) return originalDMs;
 
         const fakeDMs: any[] = [];
         multiAccountData.forEach(account => {
             if (account.isActive) {
-                // Create fake DM items for this account
                 fakeDMs.push({
                     id: `fake-dm-${account.id}`,
                     name: `${account.username}'s DMs`,
-                    type: 1, // DM type
+                    type: 1,
                     fake: true,
                     accountId: account.id,
                     recipients: [{
@@ -306,7 +273,6 @@ export default definePlugin({
                     }]
                 });
 
-                // Add fake DM channels for this account based on settings
                 const itemCount = settings.store.fakeItemsCount || 3;
                 for (let i = 0; i < itemCount; i++) {
                     fakeDMs.push({
@@ -329,50 +295,19 @@ export default definePlugin({
         return [...originalDMs, ...fakeDMs];
     },
 
-    // Get additional stores for multi-account mode
     getMultiAccountStores() {
-        if (!isMultiAccountMode) return [];
-        // Return additional stores that need to be monitored
         return [];
     },
 
-    getMultiAccountGuilds() {
-        if (!isMultiAccountMode || !settings.store.mergeServers) return null;
-        // Return merged guild data from all active accounts
-        const allGuilds: any[] = [];
-        multiAccountData.forEach(account => {
-            if (account.isActive) {
-                // In a real implementation, you'd fetch guilds for each account
-                // This is a simplified example
-                const guilds = GuildStore.getGuilds();
-                if (guilds) {
-                    Object.values(guilds).forEach(guild => allGuilds.push(guild));
-                }
-            }
-        });
-        return allGuilds;
+    start() {
+        isMultiAccountMode = settings.store.enableMultiAccount;
+        logger.info("Plugin started");
     },
 
-    getMultiAccountChannels() {
-        if (!isMultiAccountMode || !settings.store.mergeDMs) return null;
-        // Return merged channel data from all active accounts
-        const allChannels: any[] = [];
-        multiAccountData.forEach(account => {
-            if (account.isActive) {
-                // In a real implementation, you'd fetch channels for each account
-                // This is a simplified example
-                // In a real implementation, you'd fetch channels for each account
-                // This is a simplified example - ChannelStore doesn't have getChannels method
-                const channels = {};
-                if (channels) {
-                    Object.values(channels).forEach(channel => allChannels.push(channel));
-                }
-            }
-        });
-        return allChannels;
+    stop() {
+        logger.info("Plugin stopped");
     },
 
-    // Settings panel component
     SettingsPanel: () => {
         const [isEnabled, setIsEnabled] = useState(settings.store.enableMultiAccount);
 
@@ -458,3 +393,4 @@ export default definePlugin({
         );
     }
 });
+// endregion Definition

@@ -1,25 +1,8 @@
 {
   "name": "multiAccount",
   "version": "1.0.0",
-  "description": "Multi Account",
+  "description": "Allows using multiple Discord accounts in one instance by merging DMs and servers",
   "main": "index.tsx",
-  "scripts": {
-    "build": "echo 'No build step required for Vencord user plugins'",
-    "test": "echo 'No tests specified'",
-    "lint": "echo 'Linting would go here'"
-  },
-  "keywords": [
-    "vencord",
-    "discord",
-    "multi-account",
-    "multiple-accounts",
-    "account-switching",
-    "plugin",
-    "userplugin",
-    "merge",
-    "dms",
-    "servers"
-  ],
   "author": {
     "name": "Bluscream",
     "url": "https://github.com/Bluscream"
@@ -27,22 +10,10 @@
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bluscream-vencord/vencord-multiacc-plugin.git"
+    "url": "https://github.com/bluscream-vencord/multiAccount.git"
   },
-  "bugs": {
-    "url": "https://github.com/bluscream-vencord/vencord-multiacc-plugin/issues"
-  },
-  "homepage": "https://github.com/bluscream-vencord/vencord-multiacc-plugin#readme",
   "vencord": {
     "plugin": true,
     "userPlugin": true
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  },
-  "files": [
-    "index.tsx",
-    "README.md",
-    "package.json"
-  ]
+  }
 }
