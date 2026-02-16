@@ -10,7 +10,7 @@
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bluscream-vencord/multiAccount.git"
+    "url": "https://github.com/bluscream-vencord-plugins/multiAccount.git"
   },
   "vencord": {
     "plugin": true,
