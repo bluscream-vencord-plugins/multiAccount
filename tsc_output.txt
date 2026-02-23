@@ -1,0 +1,4 @@
+
+> equicord@1.14.2.0 testTsc P:\nodejs\discord\Equicord
+> tsc --noEmit
+

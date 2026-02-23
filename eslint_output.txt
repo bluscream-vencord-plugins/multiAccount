@@ -1,0 +1,77 @@
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+npm warn Unknown project config "package-manager-strict". This will stop working in the next major version of npm.
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\commands.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\commands.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\components\menus.tsx
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\components\menus.tsx
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\components\toolbox.tsx
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\components\toolbox.tsx
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\index.tsx
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\index.tsx
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\info.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\info.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\commandCleanup.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\commandCleanup.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\moderation.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\moderation.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\moduleRegistry.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\moduleRegistry.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\naming.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\naming.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\ownership.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\ownership.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\roleEnforcement.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\roleEnforcement.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\voteBanning.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\logic\voteBanning.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\types\events.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\types\events.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\types\settings.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\types\settings.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\types\state.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\types\state.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\utils\actionQueue.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\utils\actionQueue.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\utils\logger.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\utils\logger.ts
+
+C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\utils\stateManager.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): C:\Users\Bluscream\AppData\Roaming\Equicord\_SOURCE\src\userplugins\socializeGuild\utils\stateManager.ts
+
+Γ£û 18 problems (18 errors, 0 warnings)
+
